@@ -4,6 +4,23 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <p>This is a test</p>
+    <p>Thank you for your order!</p>
+    <p>You purchased: <p>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th colspan="2">Product</th>
+        <th>Quantity</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @order %>
+    </tbody>
+  </table>
+
+  <br>
+  <p>The total is: <%= '%.2f' % (@order.line_items.sum('total_price_cents') / 100.00) %></p>
+
   </body>
 </html>
