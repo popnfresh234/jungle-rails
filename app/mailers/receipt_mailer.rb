@@ -4,6 +4,6 @@ class ReceiptMailer < ApplicationMailer
     def receipt_email(order)
         @order = order
         #@url  = 'http://example.com/login'
-        mail(to: @order.email, subject: @order.id)
+        mail(to: @order.email, subject: "orderID: #{@order.id}"  )
     end
 end
