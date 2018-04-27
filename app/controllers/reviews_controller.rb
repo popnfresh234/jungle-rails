@@ -10,14 +10,16 @@ class ReviewsController < ApplicationController
         })
 
 
-        if(@review.save)
-            redirect_to root_path
-        else
-            
-             render json: @review.errors, status: :unprocessable_entity 
-            #redirect_to :back
-        end
 
+    respond_to do |format|
+        if @review.save
+          format.html { redirect_to @product, notice: 'Test was successfully created.' }
+          format.json { render :show, status: :created, location: @review }
+        else
+          format.html { render :new }
+          format.json { render json: @review.errors, status: :unprocessable_entity }
+        end
+      end
     end
 
     private
