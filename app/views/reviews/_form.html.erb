@@ -1,0 +1,10 @@
+      <%= form_for([@product, @product.reviews.build]) do |form| %>
+        <%= label_tag(:description, "Description:") %>
+        <br>
+        <%= text_area_tag(:description) %>
+        <br>
+        <%= label_tag(:rating, "Rating:") %>
+        <%= select(:rating, :rating_value, [['1', 1], ['2', 2],['3', 3],['4', 4],['5', 5]]) %>
+        <br>
+        <%= submit_tag("Submit") %>
+      <% end %>
