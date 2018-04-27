@@ -1,5 +1,7 @@
 class ReviewsController < ApplicationController
+    before_filter :authorize
     before_action :set_product, only: [:create]
+    before_action :set_product_delete, only: [:destroy]
 
     
     def create        
@@ -22,8 +24,19 @@ class ReviewsController < ApplicationController
       end
     end
 
+    def destroy
+        @review.destroy
+        redirect_to [@product], notice: 'Review deleted!'
+    end
+
     private
         def set_product
             @product = Product.find(params[:product_id])
+        end
+
+        def set_product_delete
+            
+            @review = Review.find params[:id]
+            @product = Product.find(@review.product_id)
         end
 end
