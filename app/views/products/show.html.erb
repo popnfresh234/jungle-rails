@@ -47,19 +47,17 @@
           <div class="center_div">
             <h4>Leave a review!</h4>
             <%= form_for([@product, @product.reviews.build]) do |form| %>
-              <%= label_tag(:description, "Description:") %>
+              <%= form.label :description%>
               <br>
-              <%= text_area_tag(:description) %>
+              <%= form.text_area :description %>
               <br>
-              <%= label_tag(:rating, "Rating:") %>
-              <%= select(:rating, :rating_value, [['1', 1], ['2', 2],['3', 3],['4', 4],['5', 5]]) %>
+              <%= form.label :rating %>
+              <%= form.select :rating, [1, 2, 3, 4, 5] %>
               <br>
-              <%= submit_tag("Submit") %>
+              <%= form.submit %>
             <% end %>
           </div>
-        <% end %>
-        
-      </div>
-      
+        <% end %>        
+      </div>      
     </div>
 </section>

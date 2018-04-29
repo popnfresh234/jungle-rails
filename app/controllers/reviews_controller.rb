@@ -5,23 +5,17 @@ class ReviewsController < ApplicationController
 
     
     def create        
-         @review = @product.reviews.new({
-            user: current_user,
-            description: params['description'],
-            rating: params['rating']['rating_value']
-        })
-
-
-
-    respond_to do |format|
-        if @review.save
-          format.html { redirect_to @product, notice: 'Test was successfully created.' }
-          format.json { render :show, status: :created, location: @review }
-        else
-          format.html { render :new }
-          format.json { render json: @review.errors, status: :unprocessable_entity }
+        @review = @product.reviews.new(review_params)
+        @review.user = current_user
+        respond_to do |format|
+            if @review.save
+            format.html { redirect_to @product, notice: 'Test was successfully created.' }
+            format.json { render :show, status: :created, location: @review }
+            else
+            format.html { render :new }
+            format.json { render json: @review.errors, status: :unprocessable_entity }
+            end
         end
-      end
     end
 
     def destroy
@@ -30,6 +24,10 @@ class ReviewsController < ApplicationController
     end
 
     private
+        def review_params
+            params.require(:review).permit(:rating, :description)
+        end
+
         def set_product
             @product = Product.find(params[:product_id])
         end
