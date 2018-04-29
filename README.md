@@ -21,6 +21,11 @@ Use Credit Card # 4111 1111 1111 1111 for testing success scenarios.
 
 More information in their docs: <https://stripe.com/docs/testing#cards>
 
+## Usage
+* Users can log in to place orders or can enter an email at order time if they are not registered
+* Logged in users can leave a review for products
+* All users can view product ratings, logged in users can delete their own reviews
+
 ## Dependencies
 
 * Rails 4.2 [Rails Guide](http://guides.rubyonrails.org/v4.2/)
